@@ -44,11 +44,18 @@ class SecurityHeaders
             "block-all-mixed-content;"
         ];
 
+        $keyPins = [
+            'pin-sha256="";',
+            'pin-sha256="";',
+            'pin-sha256="";'
+        ];
+
         return [
             'X-Frame-Options'           => 'SAMEORIGIN',
             'X-Content-Type-Options'    => 'nosniff',
             'X-XSS-Protection'          => '1;mode=block',
             'Content-Security-Policy'   => join(' ', $csp),
+            'Public-Key-Pins'           => join(' ', $keyPins) . ' includeSubdomains; max-age=31536000',
             'Strict-Transport-Security' => 'max-age=31536000; includeSubDomains; preload',
             'X-Powered-By'              => 'my pretty hands',
         ];
